@@ -8,4 +8,4 @@ C Warper:
 g++ -std=c++14 -shared -fPIC UserSettingsParser.cpp -o libUserSettingsParser.so -lstdc++fs
 g++ -std=c++14 -shared -fPIC UserSettingsParserWrapper.cpp -L. -lUserSettingsParser -o libUserSettingsParserWrapper.so -lstdc++fs
 gcc -c main.c -o main.o
-gcc main.o -L. -lUserSettingsParserWrapper -lUserSettingsParser -o main_program -lstdc++ -lpthread -lstdc++fs![Uploading image.png…]()
+gcc main.o -L. -lUserSettingsParserWrapper -lUserSettingsParser -o main_program -lstdc++ -lpthread -lstdc++fs
