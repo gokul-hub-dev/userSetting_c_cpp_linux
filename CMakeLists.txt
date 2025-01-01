@@ -20,3 +20,5 @@ add_library(userSetting SHARED
 )
  #---------- Install rules -------------------------------------------------------
 install(TARGETS userSetting DESTINATION lib)
+
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
