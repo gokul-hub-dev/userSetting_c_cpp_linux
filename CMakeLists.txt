@@ -18,3 +18,5 @@ add_library(userSetting SHARED
   ${USER_SETTINGS_SRC}
   ${USER_SETTINGS_WRAPPER_SRC}
 )
+ #---------- Install rules -------------------------------------------------------
+install(TARGETS userSetting DESTINATION lib)
