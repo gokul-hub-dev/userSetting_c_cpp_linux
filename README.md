@@ -9,3 +9,6 @@ g++ -std=c++14 -shared -fPIC UserSettingsParser.cpp -o libUserSettingsParser.so 
 g++ -std=c++14 -shared -fPIC UserSettingsParserWrapper.cpp -L. -lUserSettingsParser -o libUserSettingsParserWrapper.so -lstdc++fs
 gcc -c main.c -o main.o
 gcc main.o -L. -lUserSettingsParserWrapper -lUserSettingsParser -o main_program -lstdc++ -lpthread -lstdc++fs
+
+
+gcc -o main main.c -I./include -L./build -luserSetting -lstdc++fs -lstdc++
