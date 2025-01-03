@@ -1,14 +1,14 @@
 #include "UserSettingsParser.h"
+#include <iostream> // For std::cerr
 #include <cstring> // For strncpy
 
 extern "C" {
-
 // Function to create the settings file if it doesn't exist
 void create_file_if_not_exists(const char* filename) {
     try {
         UserSettingsParser::getInstance().createFileIfNotExists(filename);
     } catch (const std::exception& e) {
-        // Handle exception (log or return error code)
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
@@ -17,7 +17,7 @@ void load_settings(const char* filename) {
     try {
         UserSettingsParser::getInstance().loadSettings(filename);
     } catch (const std::exception& e) {
-        // Handle exception
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
@@ -99,7 +99,7 @@ void save_settings() {
     try {
         UserSettingsParser::getInstance().saveSettings();
     } catch (const std::exception& e) {
-        // Handle exception
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
@@ -108,8 +108,7 @@ void save_settings_as(const char* filename) {
     try {
         UserSettingsParser::getInstance().saveSettingsAs(filename);
     } catch (const std::exception& e) {
-        // Handle exception
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
-
 }
