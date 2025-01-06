@@ -7,6 +7,11 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <cstring>
+
+#define SECURE_MOUNT_FLAG_FILE "/tmp/.SecurePartition"
+#define SECURE_USR_CONFIG_FILE_PATH "/opt/SecurePartition/usr_config/"
+#define USR_CONFIG_FILE_PATH "/opt/usr_config/"
 
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
@@ -32,6 +37,7 @@ public:
     void setValueAs(const std::string& key, const T& value);
     void saveSettings();
     void saveSettingsAs(const std::string& filename);
+    const char* getUsrConfigPath(void);
 
 private:
     UserSettingsParser() = default;
