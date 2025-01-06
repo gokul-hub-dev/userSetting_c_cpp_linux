@@ -111,4 +111,8 @@ void save_settings_as(const char* filename) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
+const char* get_usr_config_path(void) {
+    return UserSettingsParser::getInstance().getUsrConfigPath();
+}
+}
 }
