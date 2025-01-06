@@ -17,6 +17,7 @@ void set_value_as_double(const char* key, double value);
 void set_value_as_bool(const char* key, int value);
 void save_settings();
 void save_settings_as(const char* filename);
+const char* get_usr_config_path(void);
 
 #ifdef __cplusplus
 }
