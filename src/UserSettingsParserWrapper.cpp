@@ -115,4 +115,3 @@ const char* get_usr_config_path(void) {
     return UserSettingsParser::getInstance().getUsrConfigPath();
 }
 }
-}
