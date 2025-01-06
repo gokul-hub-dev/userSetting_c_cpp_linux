@@ -16,6 +16,7 @@ int main() {
     printf("Is Admin: %d\n", get_value_as_bool("is_admin"));
 
     save_settings();
+    printf("tmp flag : %s\n", get_usr_config_path());
 
     return 0;
 }
