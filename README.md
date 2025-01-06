@@ -11,4 +11,14 @@ gcc -c main.c -o main.o
 gcc main.o -L. -lUserSettingsParserWrapper -lUserSettingsParser -o main_program -lstdc++ -lpthread -lstdc++fs
 
 
+
+run.sh:
+#!/bin/bash
+rm -rf build
+rm -rf main
+mkdir build
+cd build
+cmake ..
+make
+export LD_LIBRARY_PATH=./build:$LD_LIBRARY_PATH
 gcc -o main main.c -I./include -L./build -luserSetting -lstdc++fs -lstdc++
