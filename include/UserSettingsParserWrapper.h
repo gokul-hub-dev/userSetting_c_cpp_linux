@@ -18,9 +18,9 @@ void set_value_as_bool(const char* key, int value);
 void save_settings();
 void save_settings_as(const char* filename);
 const char* get_usr_config_path(void);
+const char* get_wifi_config_path(void);
 
 #ifdef __cplusplus
 }
 #endif
-
-#endif // USER_SETTINGS_PARSER_WRAPPER_H
+#endif
