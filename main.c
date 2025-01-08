@@ -14,7 +14,7 @@ int main() {
     //set_value("username", "gokul");
     //set_value_as_int("age", 30);
     //set_value_as_bool("is_admin", 1);
-    bool ret1=0;
+    int ret1=0;
     ret1=get_value_as_bool("status");
     if(ret1==1)
     {
