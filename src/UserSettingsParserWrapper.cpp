@@ -111,12 +111,4 @@ void save_settings_as(const char* filename) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
-//function to get user configuration path
-const char* get_usr_config_path(void) {
-    return UserSettingsParser::getInstance().getUsrConfigPath();
-}
-//function to get wifi configuration path
-const char* get_wifi_config_path(void) {
-    return UserSettingsParser::getInstance().getWifiConfigPath();
-}
 }
