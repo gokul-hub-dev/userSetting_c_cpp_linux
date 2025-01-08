@@ -13,11 +13,11 @@ void create_file_if_not_exists(const char* filename) {
 }
 
 // Function to load settings from a file
-void load_settings(const char* filename) {
+int load_settings(const char* filename) {
     try {
         UserSettingsParser::getInstance().loadSettings(filename);
     } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        return -1;
     }
 }
 
@@ -95,11 +95,11 @@ void set_value_as_bool(const char* key, int value) {
 }
 
 // Function to save settings
-void save_settings() {
+int save_settings() {
     try {
         UserSettingsParser::getInstance().saveSettings();
     } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        return -1;
     }
 }
 
