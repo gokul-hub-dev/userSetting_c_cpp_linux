@@ -9,13 +9,6 @@
 #include <stdexcept>
 #include <cstring>
 
-#define SECURE_MOUNT_FLAG_FILE "/tmp/.SecurePartition"
-#define SECURE_USR_CONFIG_FILE_PATH "/opt/SecurePartition/usr_config/"
-#define USR_CONFIG_FILE_PATH "/opt/usr_config/"
-
-#define SECURE_WPA_CONFIG_FILE_PATH "/opt/SecurePartition/wifi/"
-#define WPA_CONFIG_FILE_PATH "/opt/secure/wifi/"
-
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
 
@@ -40,8 +33,6 @@ public:
     void setValueAs(const std::string& key, const T& value);
     void saveSettings();
     void saveSettingsAs(const std::string& filename);
-    const char* getUsrConfigPath(void);
-    const char* getWifiConfigPath(void);
 
 private:
     UserSettingsParser() = default;
