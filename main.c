@@ -2,33 +2,60 @@
 #include <stdio.h>
 #include <stdbool.h>
 int main() {
-    const char* filename = "settings.txt";
-
-    //create_file_if_not_exists(filename);
-    int ret=load_settings(filename);
-    if(ret==-1)
+    int ret;
+	ret=create_file_if_not_exists("non_secure.txt");
+	if(ret==-1)
+    {
+        printf("Error Unable to create cvr config settings file\n");
+        return -1;
+    }
+	ret=create_file_if_not_exists("secure.txt");
+	if(ret==-1)
+    {
+        printf("Error Unable to create secure cvr config settings file\n");
+        return -1;
+    }
+	ret=load_settings("secure.txt");
+	if(ret==-1)
     {
         printf("Error loading settings\n");
         return -1;
     }
-    //set_value("username", "gokul");
-    //set_value_as_int("age", 30);
-    //set_value_as_bool("is_admin", 1);
-    int ret1=0;
-    ret1=get_value_as_bool("status");
-    if(ret1==1)
-    {
-        printf("SUCCESS\n");
-    }
-    else
-    {
-        printf("FAILURE\n");
-    }
-    printf("Username: %s\n", get_value("username"));
-    printf("Age: %d\n", get_value_as_int("age"));
-    printf("status: %d\n", get_value_as_bool("status"));
+	set_value("secure1", "1");
+    set_value("secure2", "2");
+	save_settings();
 
-    save_settings();
+	ret=load_settings("non_secure.txt");
+	if(ret==-1)
+    {
+        printf("Error loading settings\n");
+        return -1;
+    }
+	set_value("non_secure1", "1");
+    set_value("non_secure2", "2");
+	save_settings();
 
+	ret=load_settings("secure.txt");
+	if(ret==-1)
+    {
+        printf("Error loading settings\n");
+        return -1;
+    }
+	const char* value = get_value("secure1");
+    printf("value secure1: %s\n", value);
+    value = get_value("secure2");
+    printf("value secure2: %s\n", value);
+
+	ret=load_settings("non_secure.txt");
+	if(ret==-1)
+    {
+        printf("Error loading settings\n");
+        return -1;
+    }
+	value = get_value("non_secure1");
+    printf("value non_secure1: %s\n", value);
+    value = get_value("non_secure2");
+    printf("value non_secure2: %s\n", value);
+	
     return 0;
 }
