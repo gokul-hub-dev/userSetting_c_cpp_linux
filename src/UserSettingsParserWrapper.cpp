@@ -4,11 +4,11 @@
 
 extern "C" {
 // Function to create the settings file if it doesn't exist
-void create_file_if_not_exists(const char* filename) {
+int create_file_if_not_exists(const char* filename) {
     try {
         UserSettingsParser::getInstance().createFileIfNotExists(filename);
     } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        return -1;
     }
 }
 
