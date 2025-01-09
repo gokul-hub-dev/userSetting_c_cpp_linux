@@ -24,7 +24,7 @@ int load_settings(const char* filename) {
 // Function to get a value as a string
 const char* get_value(const char* key) {
     try {
-        static std::string value = UserSettingsParser::getInstance().getValue(key);
+        std::string value = UserSettingsParser::getInstance().getValue(key);
         return value.c_str();
     } catch (const std::exception& e) {
         return nullptr; // Indicate error
