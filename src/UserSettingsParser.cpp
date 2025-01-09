@@ -152,4 +152,5 @@ void UserSettingsParser::saveSettingsAs(const std::string& filename) {
         file << setting.first << "=" << setting.second << "\n";
     }
     file.close();
+    settings_.clear();
 }
