@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 int create_file_if_not_exists(const char* filename);
-void load_settings(const char* filename);
+int load_settings(const char* filename);
 const char* get_value(const char* key);
 int get_value_as_int(const char* key);
 double get_value_as_double(const char* key);
