@@ -7,17 +7,19 @@ extern "C" {
 int create_file_if_not_exists(const char* filename) {
     try {
         UserSettingsParser::getInstance().createFileIfNotExists(filename);
+        return 0;
     } catch (const std::exception& e) {
         return -1;
     }
 }
 
 // Function to load settings from a file
-void load_settings(const char* filename) {
+int load_settings(const char* filename) {
     try {
         UserSettingsParser::getInstance().loadSettings(filename);
+        return 0;
     } catch (const std::exception& e) {
-    
+        return -1;
     }
 }
 
