@@ -13,11 +13,11 @@ int create_file_if_not_exists(const char* filename) {
 }
 
 // Function to load settings from a file
-int load_settings(const char* filename) {
+void load_settings(const char* filename) {
     try {
         UserSettingsParser::getInstance().loadSettings(filename);
     } catch (const std::exception& e) {
-        return -1;
+    
     }
 }
 
