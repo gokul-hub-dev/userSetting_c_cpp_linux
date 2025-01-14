@@ -18,4 +18,6 @@ add_library(userSetting SHARED
   ${USER_SETTINGS_SRC}
   ${USER_SETTINGS_WRAPPER_SRC}
 )
+# ---------- Link stdc++fs library for experimental filesystem -------------------
+TARGET_LINK_LIBRARIES(USERSETTING stdc++fs)
 
