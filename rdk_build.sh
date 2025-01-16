@@ -29,31 +29,22 @@
 # use -e to fail on any shell issue
 # -e is the requirement from Build Framework
 set -e
-echo "gokul script called" > /home/ubuntu1604/rdk/24Q4/XCAM2_0711/build/logs/gokul.txt
 # Set environment variables
 export RDK_PROJECT_ROOT_PATH=${RDK_PROJECT_ROOT_PATH:-$(readlink -m ..)}
-export COMBINED_ROOT=$RDK_PROJECT_ROOT_PATH
+export RDK_TOOLCHAIN_PATH=$RDK_PROJECT_ROOT_PATH/sdk/toolchain/arm-linux-gnueabihf
 export RDK_SCRIPTS_PATH=${RDK_SCRIPTS_PATH:-$(readlink -m $0 | xargs dirname)}
 export RDK_SOURCE_PATH=${RDK_SOURCE_PATH:-$(readlink -m .)}
 export RDK_TARGET_PATH=${RDK_TARGET_PATH:-$RDK_SOURCE_PATH}
 export RDK_COMPONENT_NAME=${RDK_COMPONENT_NAME:-$(basename $RDK_SOURCE_PATH)}
-export RDK_DIR=$RDK_PROJECT_ROOT_PATH
 export STRIP=${RDK_TOOLCHAIN_PATH}/arm-linux-gnueabihf/bin/arm-linux-gnueabihf-strip
 export DCA_PATH=$RDK_SOURCE_PATH
-export PLATFORM_SDK=${RDK_TOOLCHAIN_PATH}
-export FSROOT=${RDK_FSROOT_PATH}
+export FSROOT=$RDK_PROJECT_ROOT_PATH/sdk/fsroot/ramdisk
 
 # Print environment variables to confirm they are set
 echo "RDK_SOURCE_PATH: $RDK_SOURCE_PATH"
 echo "RDK_TARGET_PATH: $RDK_TARGET_PATH"
 echo "RDK_COMPONENT_NAME: $RDK_COMPONENT_NAME"
 echo "RDK_DIR: $RDK_DIR"
-
-if [ "$XCAM_MODEL" == "SCHC2" ]; then
-. ${RDK_PROJECT_ROOT_PATH}/build/components/amba/sdk/setenv2
-else
-. ${RDK_PROJECT_ROOT_PATH}/build/components/sdk/setenv2
-fi
 
 # parse arguments
 INITIAL_ARGS=$@
@@ -87,9 +78,8 @@ function configure()
     cd build
     cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. \
       -DRDK_PROJECT_ROOT_PATH=${RDK_PROJECT_ROOT_PATH} \
-      -DINCLUDE_DIR_PATH=${RDK_FSROOT_PATH}/usr/include \
-      -DLIB_PATH=${RDK_FSROOT_PATH}/usr/lib \
-      -DSTRIP=${STRIP} \
+      -DINCLUDE_DIR_PATH=${FSROOT}/usr/include \
+      -DLIB_PATH=${FSROOT}/usr/lib \
       -DCMAKE_C_COMPILER=${RDK_TOOLCHAIN_PATH}/bin/arm-linux-gnueabihf-gcc \
       -DCMAKE_CXX_COMPILER=${RDK_TOOLCHAIN_PATH}/bin/arm-linux-gnueabihf-g++
 }
@@ -109,13 +99,13 @@ function install()
 {
     echo "Installing the userSetting related binaries/libraries to root file system"
     cd ${RDK_SOURCE_PATH}
-    cp -rvf ./build/libuserSetting.so ${RDK_FSROOT_PATH}/usr/lib/
-    cp -rvf ./include/*.h ${RDK_FSROOT_PATH}/usr/include
+    cp -rvf ./build/libuserSetting.so ${FSROOT}/usr/lib/
+    cp -rvf ./include/*.h ${FSROOT}/usr/include
 }
 
 function build()
 {
-   cd ${RDK_SOURCE_PATH}
+   cd ${RDK_SOURCE_PATH}/build/
    make
    install
 }
@@ -148,6 +138,7 @@ done
 
 # if not HIT do build by default
 if ! $HIT; then
+  clean
   configure
   build
 fi
