@@ -4,8 +4,6 @@ PROJECT(userSetting)
 
 
 IF("$ENV{XCAM_MODEL}" STREQUAL "XHB1" OR "$ENV{XCAM_MODEL}" STREQUAL "XHC3")
-  set(SHADOW_ROOT_LIB_PATH "${STAGING_DIR_TARGET}/sdk/fsroot/src/vendor/img/fs/shadow_root/usr/lib")
-  set(AMBA_DIR_PATH "${STAGING_DIR_TARGET}/usr/include/amba")
   set(LIBSTDCXXFS_PATH "${RDK_PROJECT_ROOT_PATH}/sdk/toolchain/cortex-a53-2022.08-gcc12.1-linux5.15/aarch64-linux-gnu/libc/usr/lib")
 ELSE()
   set(SHADOW_ROOT_LIB_PATH "${RDK_PROJECT_ROOT_PATH}/sdk/fsroot/src/vendor/img/fs/shadow_root/usr/lib")
@@ -14,7 +12,6 @@ ELSE()
 ENDIF()
 
 # ---------- Adding required definition flags ---------------------------------
-ADD_DEFINITIONS(-DBREAKPAD)
 IF("$ENV{XCAM_MODEL}" STREQUAL "XHB1")
   ADD_DEFINITIONS(-DXHB1)
 ENDIF()
