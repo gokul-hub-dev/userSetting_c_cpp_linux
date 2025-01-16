@@ -9,8 +9,8 @@
 #include <stdexcept>
 #include <cstring>
 
-#include <filesystem>
-namespace fs = std::filesystem;
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
 
 /**
  * @class UserSettingsParser
