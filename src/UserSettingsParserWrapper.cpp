@@ -26,7 +26,9 @@ int load_settings(const char* filename) {
 // Function to get a value as a string
 const char* get_value(const char* key) {
     try {
-        std::string value = UserSettingsParser::getInstance().getValue(key);
+        //thread_local meaning each thread has its own independent instance of the variable.
+        static thread_local std::string value;
+        value = UserSettingsParser::getInstance().getValue(key);        
         return value.c_str();
     } catch (const std::exception& e) {
         return nullptr; // Indicate error
