@@ -105,12 +105,4 @@ int save_settings() {
     }
 }
 
-// Function to save settings to a specific file
-void save_settings_as(const char* filename) {
-    try {
-        UserSettingsParser::getInstance().saveSettingsAs(filename);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-}
 }
