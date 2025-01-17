@@ -35,3 +35,9 @@ add_library(userSetting SHARED
 
 # ---------- Linking filesystem library --------------------------------------
 target_link_libraries(userSetting stdc++fs)
+
+# ---------- Add executable for main.c ---------------------------------------
+add_executable(usertest main.c)
+
+# ---------- Link userSetting library to usertest ----------------------------
+target_link_libraries(usertest userSetting stdc++fs)
