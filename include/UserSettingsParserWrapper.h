@@ -15,7 +15,7 @@ void set_value(const char* key, const char* value);
 void set_value_as_int(const char* key, int value);
 void set_value_as_double(const char* key, double value);
 void set_value_as_bool(const char* key, int value);
-int save_settings();
+void save_settings();
 void save_settings_as(const char* filename);
 
 #ifdef __cplusplus
