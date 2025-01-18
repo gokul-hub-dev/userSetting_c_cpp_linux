@@ -99,12 +99,21 @@ void set_value_as_bool(const char* key, int value) {
 }
 
 // Function to save settings
-int save_settings() {
+void save_settings() {
     try {
         UserSettingsParser::getInstance().saveSettings();
     } catch (const std::exception& e) {
-        return -1;
+         // Handle exception
     }
 }
+// Function to save settings to a specific file
+void save_settings_as(const char* filename) {
+    try {
+        UserSettingsParser::getInstance().saveSettingsAs(filename);
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
+
 
 }
