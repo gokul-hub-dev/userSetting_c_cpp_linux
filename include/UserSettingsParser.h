@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <cstring>
+#include <iostream>
 
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
