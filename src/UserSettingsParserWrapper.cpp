@@ -26,7 +26,9 @@ int load_settings(const char* filename) {
 // Function to get a value as a string
 const char* get_value(const char* key) {
     try {
-        std::string value = UserSettingsParser::getInstance().getValue(key);
+        //thread_local meaning each thread has its own independent instance of the variable.
+        static thread_local std::string value;
+        value = UserSettingsParser::getInstance().getValue(key);
         return value.c_str();
     } catch (const std::exception& e) {
         return nullptr; // Indicate error
@@ -47,7 +49,7 @@ double get_value_as_double(const char* key) {
     try {
         return UserSettingsParser::getInstance().getValueAs<double>(key);
     } catch (const std::exception& e) {
-        return -1.0; // Indicate error
+        return -1; // Indicate error
     }
 }
 
@@ -97,11 +99,11 @@ void set_value_as_bool(const char* key, int value) {
 }
 
 // Function to save settings
-int save_settings() {
+void save_settings() {
     try {
         UserSettingsParser::getInstance().saveSettings();
     } catch (const std::exception& e) {
-        return -1;
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
