@@ -142,7 +142,6 @@ void UserSettingsParser::saveSettings() {
  * @throws std::runtime_error If the file cannot be opened.
  */
 void UserSettingsParser::saveSettingsAs(const std::string& filename) {
-    std::lock_guard<std::mutex> lock(mutex_);
     std::ofstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Unable to open settings file: " + filename);
