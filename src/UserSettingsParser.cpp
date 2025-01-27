@@ -35,6 +35,11 @@ void UserSettingsParser::createFileIfNotExists(const std::string& filename) {
  */
 void UserSettingsParser::loadSettings(const std::string& filename) {
     std::lock_guard<std::mutex> lock(mutex_);
+    // Clear the settings map if it is not empty
+    if (!settings_.empty()) {
+        settings_.clear();
+    }
+
     std::ifstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Unable to open settings file: " + filename);
